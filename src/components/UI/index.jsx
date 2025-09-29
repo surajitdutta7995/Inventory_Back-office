@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import './UI.css';
+import './ModalFix.css';
 
 export const Button = ({ 
   children, 
@@ -52,11 +54,34 @@ export const CardBody = ({ children, className = '' }) => {
 };
 
 export const Modal = ({ isOpen, onClose, children, title }) => {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
+
+    // Cleanup function to remove class when component unmounts
+    return () => {
+      document.body.classList.remove('modal-open');
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
+  const handleContentClick = (e) => {
+    e.stopPropagation();
+  };
+
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+    <div className="modal-overlay" onClick={handleOverlayClick}>
+      <div className="modal-content" onClick={handleContentClick}>
         {title && (
           <div className="modal-header">
             <h3 className="modal-title">{title}</h3>

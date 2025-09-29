@@ -1,9 +1,10 @@
 import { useProducts } from '../../hooks/useProducts';
-import Layout from '../Layout/index.jsx';
-import StatisticsCards from './StatisticsCards.jsx';
-import ProductsList from './ProductsList.jsx';
-import ProductForm from './ProductForm.jsx';
-import ProductDetails from './ProductDetails.jsx';
+import Layout from '../Layout';
+import StatisticsCards from './StatisticsCards';
+import ProductsList from './ProductsList';
+import ProductForm from './ProductForm';
+import ProductDetails from './ProductDetails';
+import { Button } from '../UI/index.jsx';
 import './Products.css';
 
 const ProductsPage = () => {
@@ -59,23 +60,41 @@ const ProductsPage = () => {
     switch (currentView) {
       case 'add':
         return (
-          <ProductForm
-            isOpen={true}
-            onClose={handleBackToList}
-            onSubmit={handleFormSubmit}
-            title="Add New Product"
-          />
+          <>
+            <StatisticsCards statistics={statistics} />
+            <ProductsList
+              products={products}
+              onEdit={handleEditProduct}
+              onView={handleViewProduct}
+              onDelete={handleDeleteProduct}
+            />
+            <ProductForm
+              isOpen={true}
+              onClose={handleBackToList}
+              onSubmit={handleFormSubmit}
+              title="Add New Product"
+            />
+          </>
         );
       
       case 'edit':
         return (
-          <ProductForm
-            isOpen={true}
-            onClose={handleBackToList}
-            onSubmit={handleFormSubmit}
-            initialData={selectedProduct}
-            title="Edit Product"
-          />
+          <>
+            <StatisticsCards statistics={statistics} />
+            <ProductsList
+              products={products}
+              onEdit={handleEditProduct}
+              onView={handleViewProduct}
+              onDelete={handleDeleteProduct}
+            />
+            <ProductForm
+              isOpen={true}
+              onClose={handleBackToList}
+              onSubmit={handleFormSubmit}
+              initialData={selectedProduct}
+              title="Edit Product"
+            />
+          </>
         );
       
       case 'details':
@@ -93,12 +112,24 @@ const ProductsPage = () => {
             <StatisticsCards statistics={statistics} />
             <ProductsList
               products={products}
-              onAdd={handleAddProduct}
               onEdit={handleEditProduct}
               onView={handleViewProduct}
               onDelete={handleDeleteProduct}
             />
           </>
+        );
+    }
+  };
+
+  const getPageActions = () => {
+    switch (currentView) {
+      case 'details':
+        return null;
+      default:
+        return (
+          <Button onClick={handleAddProduct}>
+            + Add Product
+          </Button>
         );
     }
   };
@@ -125,6 +156,7 @@ const ProductsPage = () => {
     <Layout 
       pageTitle={getPageTitle()} 
       pageDescription={getPageDescription()}
+      pageActions={getPageActions()}
     >
       {renderContent()}
     </Layout>

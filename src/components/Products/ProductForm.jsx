@@ -32,7 +32,7 @@ const ProductForm = ({
     avgSellingPrice: initialData?.avgSellingPrice || '',
     inStock: initialData?.inStock || '',
     thumbnailImage: initialData?.thumbnailImage || '',
-    variantFeatures: initialData?.variantFeatures || []
+    variantFeatures: initialData?.variantFeatures || [{ name: '', value: '' }]
   });
 
   const [imagePreview, setImagePreview] = useState(initialData?.thumbnailImage || '');
@@ -207,7 +207,7 @@ const ProductForm = ({
               <label htmlFor="usedDevice">Used Device</label>
             </div>
           </div>
-
+          {/* 
           <div className="form-row">
             <FormGroup>
               <FormLabel>Average Buying Price</FormLabel>
@@ -241,6 +241,8 @@ const ProductForm = ({
               onChange={(e) => handleChange('inStock', e.target.value)}
             />
           </FormGroup>
+           */}
+
 
           <div className="variant-section">
             <div className="variant-header">

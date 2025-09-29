@@ -557,6 +557,16 @@
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.025em;
+  display: inline-flex;
+  align-items: center;
+}
+
+.status-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
 }
 
 .status-active {
@@ -564,14 +574,26 @@
   color: #166534;
 }
 
+.status-active::before {
+  background-color: #22c55e;
+}
+
 .status-warning {
   background-color: #fef3c7;
   color: #92400e;
 }
 
+.status-warning::before {
+  background-color: #f59e0b;
+}
+
 .status-critical {
   background-color: #fee2e2;
   color: #991b1b;
+}
+
+.status-critical::before {
+  background-color: #ef4444;
 }
 
 /* Table Styles */

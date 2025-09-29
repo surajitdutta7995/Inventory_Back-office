@@ -3,7 +3,7 @@ import { Search, Filter, Eye, Edit, Trash2 } from 'lucide-react';
 import { Button, StatusBadge } from '../UI/index.jsx';
 import './Products.css';
 
-const ProductsList = ({ products, onEdit, onDelete, onView, onAdd }) => {
+const ProductsList = ({ products, onEdit, onDelete, onView }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
@@ -50,9 +50,6 @@ const ProductsList = ({ products, onEdit, onDelete, onView, onAdd }) => {
           <Button variant="secondary" className="filters-button">
             <Filter size={18} />
             Filters
-          </Button>
-          <Button onClick={onAdd}>
-            + Add Product
           </Button>
         </div>
       </div>

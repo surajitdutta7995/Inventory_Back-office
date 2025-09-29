@@ -18,12 +18,13 @@
   display: flex;
   gap: 0.75rem;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .search-container {
   position: relative;
   flex: 1;
-  max-width: 400px;
+  min-width: 0;
 }
 
 .search-icon {
@@ -32,10 +33,19 @@
   top: 50%;
   transform: translateY(-50%);
   color: #6b7280;
+  z-index: 1;
 }
 
 .search-input {
-  padding-left: 2.5rem;
+  padding-left: 3rem !important;
+}
+
+.search-container .search-input {
+  padding-left: 3rem;
+}
+
+.search-container .form-input.search-input {
+  padding-left: 3rem !important;
 }
 
 .filters-button {
